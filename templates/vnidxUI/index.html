@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/css/bootstrap.min.css" integrity="sha384-9aIt2nRpC12Uk9gS9baDl411NQApFmC26EwAOH8WgZl5MYYxFfc+NcPb1dKGj7Sk" crossorigin="anonymous">
+  <title>Analysis</title>
+</head>
+<body>
+  <form action="{% url 'index' %}">
+    <label for="cpn_code">Company:</label>
+    <input type="text" name="cpn_code" id="cpn_code">
+    
+    <label for="lai_suat">Lai suat</label>
+    <input type="text" name="lai_suat" id="lai_suat">
+    <button type="submit">Analysis</button>
+  </form>
+  <hr>
+  <div class="container-fluid">
+    <div class="col-md-12">
+      <div class="col-sm-6">
+        <table class="table">
+          <tr>
+            <td>EPS:</td>
+            <td>{{EPS}}</td>
+          </tr>
+          <tr>
+            <td>KLDLH</td>
+            <td>{{KLDLH}}</td>
+          </tr>
+          <tr>
+            <td>Capital</td>
+            <td>{{Capital}}</td>
+          </tr>
+          <tr>
+            <td>Rising speed</td>
+            <td>{{rising_speed}}</td>
+          </tr>
+        </table>
+      </div>
+  
+      <div class="col-sm-6">
+        <table class="table">
+          <tr>
+            <td>Real 1: </td>
+            <td>{{value1}} VND</td>
+          </tr>
+          <tr>
+            <td>Real 2: </td>
+            <td>{{value2}} VND</td>
+          </tr>
+          <tr>
+            <td>Real 3: </td>
+            <td>{{value3}} VND</td>
+          </tr>
+        </table>
+      </div>
+    </div>
+  </div>
+</body>
+</html>
