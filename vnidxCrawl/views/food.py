@@ -21,12 +21,21 @@ class Crawler:
         self.asset_data = BeautifulSoup(requests.get(self.path_get_asset_info).text, "html.parser")
         self.index_data = BeautifulSoup(requests.get(self.path_get_index_info).text, "html.parser")
 
-    def get_item_data(self, item):
-        for tr in self.asset_data.find_all('tr'):
-            if item in tr.get_text():
-                dt = list(map(lambda x: float(x.get_text(strip=True).replace(",", "")) if x.get_text(strip=True) else 0, tr.find_all('td')[1:]))
-                return np.array(dt)
-        return []
+    def get_total_assets(self):
+        """
+        Tổng tài sản
+        """
+        tr = self.asset_data.find_all('tr', {'id': 'rptNhomChiTieu_ctl01_rptData_ctl01_TrData'})[0]
+        dt = list(map(lambda x: float(x.get_text(strip=True).replace(",", "")) if x.get_text(strip=True) else 0, tr.find_all('td')[1:]))
+        return np.array(dt)
+
+    def get_capital(self):
+        """
+        Vốn chủ sở hữu
+        """
+        tr = self.asset_data.find_all('tr', {'id': 'rptNhomChiTieu_ctl01_rptData_ctl04_TrData'})[0]
+        dt = list(map(lambda x: float(x.get_text(strip=True).replace(",", "")) if x.get_text(strip=True) else 0, tr.find_all('td')[1:]))
+        return np.array(dt)
 
     def get_toc_do_tang_truong(self):
         self.g = round(np.mean(self.get_item_data("Tổng doanh thu")/self.get_item_data("Tổng tài sản"))*100, 2)
@@ -92,7 +101,9 @@ class Crawler:
     def get_real_value_3(self):
         capital = self.get_item_data("Vốn và các quỹ")[-1]
         KLDLH = self.get_eps("đang lưu hành")
-        self.capital = capital
-        self.KLDLH = KLDLH
         BVPS = capital/KLDLH
         return round(np.sqrt(22.5*BVPS*self.select_eps_value()), 2)
+
+a = Crawler("VNM")
+print(a.get_total_assets())
+print(a.get_capital())
