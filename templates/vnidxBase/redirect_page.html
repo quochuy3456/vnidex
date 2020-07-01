@@ -1,0 +1,15 @@
+{% extends 'vnidxBase/master_page.html' %}
+
+{% block content %}
+  <div class="container">
+    <div class="row">
+      <h1>Company stock scanning - VNIndex</h1>
+      <p>Chọn nghành bạn muốn phân tích:</p>
+    </div>
+    
+    <div class="row">
+      <a href="{% url 'bank' %}" id="myBtn">Bank</a>
+      <a href="{% url 'footanddrink' %}" id="myBtn">Foot and Drink</a>
+    </div>
+  </div>
+{% endblock %}

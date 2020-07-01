@@ -1,0 +1,101 @@
+<!DOCTYPE html>
+{% load static %}
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <link rel="icon" href="{% static 'media/money-bag.png' %}" type="image/png" sizes="16x16">
+  <title>Redirect</title>
+  <style>
+    #myVideo {
+      position: fixed;
+      right: 0;
+      bottom: 0;
+      min-width: 100%;
+      min-height: 100%;
+    }
+
+    .content {
+      position: absolute;
+      left: 0;
+      top: 0;
+      background: rgba(0, 0, 0, 0.5);
+      color: #f1f1f1;
+      width: 100%;
+      padding: 20px;
+      z-index: 3;
+    }
+
+    #myBtn {
+      width: 200px;
+      font-size: 18px;
+      padding: 10px;
+      border: none;
+      background: #000;
+      color: #fff;
+      cursor: pointer;
+      text-decoration: none;
+    }
+
+    #myBtn:hover {
+      background: #ddd;
+      color: black;
+    }
+
+    .overplane{
+      min-width: 100%;
+      min-height: 100%;
+      position: fixed;
+      left: 0;
+      top: 0;
+      background-color:rgba(0, 0, 0, 0.8);
+      z-index: 2;
+    }
+    .ct-center{
+      text-align: center;
+      padding: 5px 10px;
+    }
+
+    .alert-danger{
+      background-color: rgb(104, 28, 28);
+    }
+
+    .alert-success{
+      background-color: rgb(8, 124, 8);
+    }
+
+    .title-table{
+      background-color:rgb(3, 58, 58);
+      font-size: 16px;
+      font-weight: bold;
+    }
+
+    hr.type_1 {
+          border: 0;
+          height: 1px;
+          background-image: linear-gradient(to right, rgba(82, 79, 79, 0), rgba(255, 255, 255, 0.75), rgba(85, 80, 80, 0));
+        }
+
+    a{
+      text-decoration: chartreuse;
+      color:lightseagreen;
+    }
+
+  </style>
+</head>
+<body>
+  <div class="container">
+    <div class="overplane"></div>
+    <video autoplay muted loop id="myVideo">
+      <source src="{% static 'media/bgv.mp4' %}" type="video/mp4">
+    </video>
+
+    <div class="content">
+      {% block content %}
+
+      {% endblock %}
+    </div>
+  </div>
+</body>
+</html>

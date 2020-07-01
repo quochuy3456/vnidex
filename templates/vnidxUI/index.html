@@ -1,81 +1,68 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <meta http-equiv="X-UA-Compatible" content="ie=edge">
-  <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/css/bootstrap.min.css" integrity="sha384-9aIt2nRpC12Uk9gS9baDl411NQApFmC26EwAOH8WgZl5MYYxFfc+NcPb1dKGj7Sk" crossorigin="anonymous">
-  <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
-  <title>Analysis</title>
-</head>
-<body>
-  <div class="container-fluid">
-    <div class="row">
-      <h3>Phân tích mã cổ phiếu nghành Ngân hàng - VNindex</h3>
-    </div>
-    <div class="row">
-      <form action="{% url 'bank' %}" >
-        <table>
-          <tr>
-            <td><label for="cpn_code">Mã công ty:</label></td>
-            <td><input type="text" name="cpn_code" id="cpn_code" value="{{cpn_code}}" ></td>
-          </tr>
-          <tr>
-            <td></td>
-            <td>Nhập mã cổ phiếu của công ty (VCB, TCB...)</td>
-          </tr>
-          <tr>
-            <td></td>
-            <td>
-                <p>Có thể nhập nhiều mã, các mã phân tách nhau bằng dấu phẩy.</p>
-                <p>VD: VCB, TCB</p>
-            </td>
-          </tr>
-          <tr>
-            <td>
-              <label for="lai_suat">Lãi suất/năm</label>
-            </td>
-            <td>
-              <input type="text" name="lai_suat" id="lai_suat" value="{{lai_suat}}">
-            </td>
-          </tr>
-          <tr>
-            <td></td>
-            <td><button type="submit">Analysis</button></td>
-          </tr>
-        </table>
-      </form>
-    </div>
-    <hr>
+{% extends 'vnidxBase/master_page.html' %}
+
+{% block content %}
+  <div class="container">
     <div class="row">
       <div class="col-md-12 col-sm-12 col-lg-12">
-        <h3>Kết quả phân tích</h3>
-        <table class="table">
+        <center>
+          <h1>Phân tích mã cổ phiếu nghành Ngân Hàng - VNindex</h1>
+        </center>
+        <hr class="type_1">
+      </div>
+    </div>
+    <div class="row">
+      <div class="col-md-12 col-sm-12 col-lg-12">
+        <center>
+          <form action="{% url 'bank' %}" >
+            <table>
+              <tr>
+                <td><label for="cpn_code">Mã công ty:</label></td>
+                <td><input type="text" name="cpn_code" id="cpn_code" value="{{cpn_code}}" ></td>
+              </tr>
+              <tr>
+                <td></td>
+                <td>Nhập mã cổ phiếu của công ty thuộc nghành <a href="https://trade.vndirect.com.vn/chung-khoan/co-phieu-nganh" type="_blank">Ngân Hàng</a> (VCB, TCB...)</td>
+              </tr>
+              <tr>
+                <td></td>
+                <td>
+                    <p>Có thể nhập nhiều mã, các mã phân tách nhau bằng dấu phẩy.</p>
+                    <p>VD: VCB, TCB</p>
+                </td>
+              </tr>
+              <tr>
+                <td>
+                  <label for="lai_suat">Lãi suất trái phiếu</label>
+                </td>
+                <td>
+                  <input type="text" name="lai_suat" id="lai_suat" value="{{lai_suat}}">
+                </td>
+              </tr>
+              <tr>
+                <td></td>
+                <td><button type="submit">Analysis</button></td>
+              </tr>
+            </table>
+          </form>
+        </center>
+      </div>
+    </div>
+    <br>
+    <div class="row">
+      <div class="col-md-12 col-sm-12 col-lg-12">
+        <center>
+          <h3>Kết quả phân tích</h3>
+        <table class="table" border="1">
           {% for e in data %}
-          <tr>
+          <tr class="{% if forloop.counter == 1 %}title-table{% endif %}">
             {% for i in e %}
-              <td class="{% if 'xem xét' in i %}alert-danger{% elif 'Có thể ' in i %}alert-success{%endif%}">{{i}}</td>
+              <td class="ct-center {% if 'xem xét' in i %}alert-danger{% elif 'Có thể ' in i %}alert-success{%endif%}">{{i}}</td>
             {% endfor %}
           </tr>  
           {% endfor %}
         </table>
+        </center>
       </div>
     </div>
-
-    <script>
-      var Analysis = new Vue({
-        el: "#app",
-        delimiters: ['<%', '%>'],
-        data:{
-          
-        },
-        computed: {
-          reversedMessage: function (d) {
-              return indexOf
-            }
-        }
-      })
-    </script>
   </div>
-</body>
-</html>
+{% endblock %}
