@@ -8,23 +8,23 @@
   <link rel="icon" href="{% static 'media/money-bag.png' %}" type="image/png" sizes="16x16">
   <title>Redirect</title>
   <style>
-    #myVideo {
-      position: fixed;
-      right: 0;
-      bottom: 0;
-      min-width: 100%;
-      min-height: 100%;
-    }
+<!--    #myVideo {-->
+<!--      position: fixed;-->
+<!--      right: 0;-->
+<!--      bottom: 0;-->
+<!--      min-width: 100%;-->
+<!--      min-height: 100%;-->
+<!--    }-->
 
     .content {
-      position: absolute;
+      position: fixed;
       left: 0;
       top: 0;
-      background: rgba(0, 0, 0, 0.5);
+      /* background: rgba(0, 0, 0, 0.5); */
       color: #f1f1f1;
       width: 100%;
       padding: 20px;
-      z-index: 3;
+      z-index: 5;
     }
 
     #myBtn {
@@ -32,15 +32,27 @@
       font-size: 18px;
       padding: 10px;
       border: none;
-      background: #000;
+      background: rgb(5, 48, 24);
       color: #fff;
       cursor: pointer;
       text-decoration: none;
     }
 
-    #myBtn:hover {
-      background: #ddd;
-      color: black;
+    #myBtn-home {
+      width: 200px;
+      font-size: 18px;
+      padding: 10px;
+      border: none;
+      background: rgba(11, 218, 132, 0.747);
+      color: #fff;
+      cursor: pointer;
+      text-decoration: chartreuse;
+      border-radius: 5px;
+    }
+
+    #myBtn:hover, #myBtn-home:hover {
+      background: rgba(171, 189, 166, 0.63);
+      color: rgb(255, 255, 255);
     }
 
     .overplane{
@@ -77,21 +89,33 @@
           background-image: linear-gradient(to right, rgba(82, 79, 79, 0), rgba(255, 255, 255, 0.75), rgba(85, 80, 80, 0));
         }
 
-    a{
+    .a-btn{
       text-decoration: chartreuse;
       color:lightseagreen;
     }
 
+    .over-ct{
+      height: 200px;
+      overflow: auto;
+    }
+
+    body{
+      background-image: url("{% static 'media/bgi.gif' %}");
+      background-size: cover;
+      background-position: fixed;
+    }
+    
   </style>
 </head>
 <body>
   <div class="container">
     <div class="overplane"></div>
-    <video autoplay muted loop id="myVideo">
+    <!-- <video autoplay muted loop id="myVideo">
       <source src="{% static 'media/bgv.mp4' %}" type="video/mp4">
-    </video>
+    </video> -->
 
     <div class="content">
+      <a href="{% url 'redirect_page' %}" id="myBtn-home">Home</a>
       {% block content %}
 
       {% endblock %}

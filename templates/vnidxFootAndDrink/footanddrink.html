@@ -21,7 +21,7 @@
               </tr>
               <tr>
                 <td></td>
-                <td>Nhập mã cổ phiếu của công ty thuộc nghành <a href="https://trade.vndirect.com.vn/chung-khoan/co-phieu-nganh" type="_blank">Thực phẩm và Nước uống</a> (VNM, SKH...)</td>
+                <td>Nhập mã cổ phiếu của công ty thuộc nghành <a href="https://trade.vndirect.com.vn/chung-khoan/co-phieu-nganh" class="a-btn" type="_blank">Thực phẩm và Nước uống</a> (VNM, SKH...)</td>
               </tr>
               <tr>
                 <td></td>
@@ -48,17 +48,29 @@
       </div>
     </div>
     <br>
-    <div class="row">
+    <div class="row over-ct">
       <div class="col-md-12 col-sm-12 col-lg-12">
         <center>
           <h3>Kết quả phân tích</h3>
           <table class="table" border="1">
             {% for e in data %}
-            <tr class="{% if forloop.counter == 1 %}title-table{% endif %}">
-              {% for i in e %}
-                <td class="ct-center {% if 'xem xét' in i %}alert-danger{% elif 'Có thể ' in i %}alert-success{%endif%}">{{i}}</td>
-              {% endfor %}
-            </tr>
+              <tr class="{% if forloop.counter == 1 %}title-table{% endif %}">
+                {% if forloop.counter == 1 %}
+                  {% for i in e %}
+                    {% if "công ty" not in i %}
+                      <td class="ct-center">
+                          <a href="https://s.cafef.vn/upcom/{{i}}-.chn" class="a-btn">{{i}}</a>
+                      </td>
+                    {% else %}
+                      <td class="ct-center">{{i}}</td>
+                    {% endif %}
+                  {% endfor %}
+                {% else %}
+                  {% for i in e %}
+                    <td class="ct-center {% if 'xem xét' in i %}alert-danger{% elif 'Có thể ' in i %}alert-success{%endif%}">{{i}}</td>
+                  {% endfor %}
+                {% endif %}
+              </tr>
             {% endfor %}
           </table>
         </center>
