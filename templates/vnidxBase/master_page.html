@@ -5,22 +5,23 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <script src="https://cdn.jsdelivr.net/npm/vue@2.6.10/dist/vue.js"></script>
+  <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/css/bootstrap.min.css" integrity="sha384-9aIt2nRpC12Uk9gS9baDl411NQApFmC26EwAOH8WgZl5MYYxFfc+NcPb1dKGj7Sk" crossorigin="anonymous">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
   <link rel="icon" href="{% static 'media/money-bag.png' %}" type="image/png" sizes="16x16">
   <title>Redirect</title>
   <style>
-<!--    #myVideo {-->
-<!--      position: fixed;-->
-<!--      right: 0;-->
-<!--      bottom: 0;-->
-<!--      min-width: 100%;-->
-<!--      min-height: 100%;-->
-<!--    }-->
-
+    body{
+      background-image: url("{% static 'media/bgi.gif' %}");
+      background-size: cover;
+      background-repeat: no-repeat;
+      background-attachment: fixed;
+    }
+      
     .content {
       position: fixed;
       left: 0;
       top: 0;
-      /* background: rgba(0, 0, 0, 0.5); */
       color: #f1f1f1;
       width: 100%;
       padding: 20px;
@@ -69,18 +70,10 @@
       padding: 5px 10px;
     }
 
-    .alert-danger{
-      background-color: rgb(104, 28, 28);
-    }
-
-    .alert-success{
-      background-color: rgb(8, 124, 8);
-    }
-
     .title-table{
       background-color:rgb(3, 58, 58);
-      font-size: 16px;
       font-weight: bold;
+      color: rgba(255, 255, 255, 0.75);
     }
 
     hr.type_1 {
@@ -95,15 +88,14 @@
     }
 
     .over-ct{
-      height: 200px;
+      height: 100%;
       overflow: auto;
     }
-
-    body{
-      background-image: url("{% static 'media/bgi.gif' %}");
-      background-size: cover;
-      background-position: fixed;
+    
+    .tableData{
+      background-color: rgba(255, 255, 255, 0.5);
     }
+
     
   </style>
 </head>
@@ -114,7 +106,7 @@
       <source src="{% static 'media/bgv.mp4' %}" type="video/mp4">
     </video> -->
 
-    <div class="content">
+    <div class="content over-ct">
       <a href="{% url 'redirect_page' %}" id="myBtn-home">Home</a>
       {% block content %}
 

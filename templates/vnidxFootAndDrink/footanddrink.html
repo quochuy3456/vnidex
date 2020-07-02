@@ -5,26 +5,26 @@
     <div class="row">
       <div class="col-md-12 col-sm-12 col-lg-12">
         <center>
-          <h1>Phân tích mã cổ phiếu nghành Thực Phẩm và Nước uống - VNindex</h1>
+          <h3>Phân tích mã cổ phiếu nghành Thực Phẩm và Nước uống - VNindex</h3>
         </center>
         <hr class="type_1">
       </div>
     </div>
-    <div class="row">
+    <div class="row" id="input-form">
       <div class="col-md-12 col-sm-12 col-lg-12">
         <center>
           <form action="{% url 'footanddrink' %}" >
             <table>
               <tr>
-                <td><label for="cpn_code">Mã công ty:</label></td>
-                <td><input type="text" name="cpn_code" id="cpn_code" value="{{cpn_code}}" ></td>
+                <td>
+                  <label for="cpn_code">Mã công ty:</label>
+                  <input type="text" name="cpn_code" id="cpn_code" value="{{cpn_code}}" >
+                </td>
               </tr>
               <tr>
-                <td></td>
-                <td>Nhập mã cổ phiếu của công ty thuộc nghành <a href="https://trade.vndirect.com.vn/chung-khoan/co-phieu-nganh" class="a-btn" type="_blank">Thực phẩm và Nước uống</a> (VNM, SKH...)</td>
+                <td>* Nhập mã cổ phiếu của công ty thuộc nghành <a href="https://trade.vndirect.com.vn/chung-khoan/co-phieu-nganh" class="a-btn" type="_blank">Thực phẩm và Nước uống</a> (VNM, SKH...)</td>
               </tr>
               <tr>
-                <td></td>
                 <td>
                     <p>Có thể nhập nhiều mã, các mã phân tách nhau bằng dấu phẩy.</p>
                     <p>VD: VNM, SKH</p>
@@ -33,14 +33,14 @@
               <tr>
                 <td>
                   <label for="lai_suat">Lãi suất trái phiếu</label>
-                </td>
-                <td>
                   <input type="text" name="lai_suat" id="lai_suat" value="{{lai_suat}}">
                 </td>
               </tr>
-              <tr>
-                <td></td>
-                <td><button type="submit">Phân tích</button></td>
+              <tr class="ct-center">
+                <td>
+                  <br>
+                  <button type="submit">Phân tích</button>
+                </td>
               </tr>
             </table>
           </form>
@@ -48,26 +48,27 @@
       </div>
     </div>
     <br>
-    <div class="row over-ct">
+    <div class="row">
       <div class="col-md-12 col-sm-12 col-lg-12">
         <center>
           <h3>Kết quả phân tích</h3>
-          <table class="table" border="1">
+          <table class="table tableData" border="1">
             {% for e in data %}
               <tr class="{% if forloop.counter == 1 %}title-table{% endif %}">
                 {% if forloop.counter == 1 %}
                   {% for i in e %}
+                    
                     {% if "công ty" not in i %}
-                      <td class="ct-center">
+                      <td class="ct-center {% if forloop.counter == 1 %}title-table{% endif %}">
                           <a href="https://s.cafef.vn/upcom/{{i}}-.chn" class="a-btn">{{i}}</a>
                       </td>
                     {% else %}
-                      <td class="ct-center">{{i}}</td>
+                      <td class="ct-center {% if forloop.counter == 1 %}title-table{% endif %}">{{i}}</td>
                     {% endif %}
                   {% endfor %}
                 {% else %}
                   {% for i in e %}
-                    <td class="ct-center {% if 'xem xét' in i %}alert-danger{% elif 'Có thể ' in i %}alert-success{%endif%}">{{i}}</td>
+                    <td class="ct-center {% if forloop.counter == 1 %}title-table{% endif %} {% if 'xem xét' in i %}alert-danger{% elif 'Có thể ' in i %}alert-success{%endif%}">{{i}}</td>
                   {% endfor %}
                 {% endif %}
               </tr>
@@ -76,5 +77,14 @@
         </center>
       </div>
     </div>
+    <script>
+      var Vue_Input = new Vue({
+        el: "#input-form",
+        delimiters: ['%<', '>%'],
+        data:{
+          click: false,
+        }
+      })
+    </script>
   </div>
 {% endblock %}
